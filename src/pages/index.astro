@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Video scroll test">
+  <main>
+    <div class="toolbar">
+      <select name="keyframes" id="keyframes">
+        <option value="rs-scroll-1-small.webm">Every frame</option>
+        <option value="rs-scroll-2-small.webm">Every 2 frames</option>
+        <option value="rs-scroll-4-small.webm" selected>Every 4 frames</option>
+        <option value="rs-scroll-8-small.webm">Every 8 frames</option>
+      </select>
+    </div>
+
+    <video id="video" src="rs-scroll-4-small.webm" muted playsinline />
+  </main>
+
+  <script is:inline>
+    const main = document.querySelector('main');
+    const video = document.querySelector('#video');
+    const videoFrames = 373;//Number of frames in the video
+    const videoFps = 30;//Framerate of the video
+    const videoTime = videoFrames / videoFps;//Total length (in s) of video
+
+    main.style.height = (videoFrames * 3) + 'vh';
+
+    function videoScroll() {
+      let h = document.documentElement, 
+          b = document.body,
+          st = 'scrollTop',
+          sh = 'scrollHeight';
+
+      let percent = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;//Get percentage scrolled
+      video.currentTime = (videoTime / 100) * percent;//Set current time in the video
+    }
+
+    window.addEventListener('scroll', function() {
+      videoScroll();
+    });
+    window.addEventListener('resize', function() {
+      videoScroll();
+    });
+
+    /* Toolbar */
+    const keyframes = document.querySelector('#keyframes');
+
+    keyframes.addEventListener('change', function() {
+      video.src = keyframes.value;//Select video file
+    });
+
+  </script>
+</Layout>
+
+<style is:global>
+  body {
+    font-family: system-ui;
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    height: 650vh;
+  }
+  video {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .toolbar {
+    position: fixed;
+    z-index: 16;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  .coord {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .coord span {
+    display: block;
+    position: absolute;
+    left: 1rem;
+    top: -0.75rem;
+    background-color: #111;
+    color: #fafafa;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    border-radius: 0.25rem;
+  }
+</style>
