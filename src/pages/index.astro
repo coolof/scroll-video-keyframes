@@ -23,7 +23,7 @@ import Layout from '../layouts/Layout.astro';
     const videoFps = 30;//Framerate of the video
     const videoTime = videoFrames / videoFps;//Total length (in s) of video
 
-    main.style.height = (videoFrames * 3) + 'vh';
+    main.style.height = (videoFrames * 3) + 'vh';//Set height of video wrapper based on number of frames
 
     function videoScroll() {
       let h = document.documentElement, 
