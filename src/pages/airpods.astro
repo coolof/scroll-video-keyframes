@@ -1,0 +1,25 @@
+---
+import Toolbar from '../components/Toolbar.astro';
+import Video from '../components/Video.astro';
+import Layout from '../layouts/Layout.astro';
+
+const fileName = "airpods2";
+---
+
+<Layout title="Video scroll test – Airpods">
+  <main data-frames="150" data-fps="40">
+    <Toolbar file={fileName} current="airpods" copyright="Apple" copyrightUrl="https://apple.com" />
+
+    <Video file={fileName} />
+  </main>
+</Layout>
+
+<style is:global>
+  #video {
+    max-width: 780px;
+    height: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%,-50%,0);
+  }
+</style>
