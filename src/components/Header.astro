@@ -1,0 +1,48 @@
+---
+const {current} = Astro.props;
+---
+
+<header class="header">
+  <nav class="menu">
+    <div class:list={['menu__item', {active: current == 'home'}]}>
+      <a href="/">Radioshuttle</a>
+    </div>
+    <div class:list={['menu__item', {active: current == 'airpods'}]}>
+      <a href="/airpods">Airpods</a>
+    </div>
+    <div class:list={['menu__item', {active: current == 'stock'}]}>
+      <a href="/stock">Stock video</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    z-index: 32;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    padding: clamp(0.5rem, 2vw, 1rem);
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  .menu {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu__item {
+    margin: 0 clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .menu__item :global(a) {
+    text-decoration: none;
+  }
+
+  :global(.active) {
+    font-weight: bold;
+  }
+</style>

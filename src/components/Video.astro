@@ -2,7 +2,7 @@
 const {file} = Astro.props;
 ---
 
-<video id="video" muted playsinline>
-  <source id="webm" src={'/' + file + '-4.webm'} type="video/webm">
-  <source id="mp4" src={'/' + file + '-4.mp4'} type="video/mp4">
+<video id="video" muted="muted" playsinline preload="auto">
+  <source id="webm" src={'/' + file + '-4.webm#t=0.001'} type="video/webm">
+  <source id="mp4" src={'/' + file + '-4.mp4#t=0.001'} type="video/mp4">
 </video>

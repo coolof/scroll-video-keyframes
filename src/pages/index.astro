@@ -1,15 +1,31 @@
 ---
-import Toolbar from '../components/Toolbar.astro';
-import Video from '../components/Video.astro';
+import Header from '../components/Header.astro';
 import Layout from '../layouts/Layout.astro';
-
-const fileName = "rs-scroll";
 ---
 
 <Layout title="Video scroll test">
-  <main data-frames="373" data-fps="30">
-    <Toolbar file={fileName} current="home" copyright="Radioshuttle" copyrightUrl="https://radioshuttle.eu" />
+  <Header current="home" />
 
-    <Video file={fileName} />
+  <main data-frames="373" data-fps="30" data-multiplier="1.5">
+    <video id="video" muted="muted" playsinline preload="auto">
+      <source id="webm" src="/rs-scroll-2.webm#t=0.001" type="video/webm">
+      <source id="mp4" src="/rs-scroll2-2.mp4#t=0.001" type="video/mp4">
+    </video>
+
+    <div class="video-copyright">
+      Copyright &copy; <a href="https://radioshuttle.eu">Radioshuttle</a>;
+    </div>
   </main>
+
+  <script src="/app-raf.js" is:inline></script>
 </Layout>
+
+<style is:global>
+  #video {
+    max-width: 1280px;
+    height: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%,-50%,0);
+  }
+</style>

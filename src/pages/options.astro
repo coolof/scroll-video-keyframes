@@ -1,0 +1,17 @@
+---
+import Toolbar from '../components/Toolbar.astro';
+import Video from '../components/Video.astro';
+import Layout from '../layouts/Layout.astro';
+
+const fileName = "rs-scroll";
+---
+
+<Layout title="Video scroll test">
+  <main data-frames="373" data-fps="30">
+    <Toolbar file={fileName} current="home" copyright="Radioshuttle" copyrightUrl="https://radioshuttle.eu" />
+
+    <Video file={fileName} />
+  </main>
+
+  <script src="/app.js" is:inline></script>
+</Layout>
