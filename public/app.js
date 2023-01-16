@@ -42,11 +42,11 @@ keyframes.addEventListener('change', function() {
   videoElem.setAttribute('muted', '');
 
   let sourceMp4 = document.createElement('source');
-  sourceMp4.src = keyframes.value + '.mp4';
+  sourceMp4.src = '/' + keyframes.value + '.mp4';
   sourceMp4.type = 'video/mp4';
 
   let sourceWebm = document.createElement('source');
-  sourceWebm.src = keyframes.value + '.webm';
+  sourceWebm.src = '/' + keyframes.value + '.webm';
   sourceWebm.type = 'video/webm';
 
   video.parentNode.removeChild(video);
